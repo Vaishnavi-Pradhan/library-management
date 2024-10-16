@@ -1,0 +1,58 @@
+Database for Library Management System
+(MySQL Syntax)
+
+-- Step 1: Create the database
+CREATE DATABASE project;
+
+-- Step 2: Use the created database
+USE project;
+
+-- Step 3: Create the "register" table
+CREATE TABLE register (
+    prn INT PRIMARY KEY,
+    name VARCHAR(30),
+    password VARCHAR(10)
+);
+
+-- Step 4: Create the "book_db" table
+CREATE TABLE book_db (
+    id VARCHAR(4),
+    b_name VARCHAR(20),
+    ttl_copies INT,
+    avl_copies INT,
+    PRIMARY KEY (id)
+);
+
+-- Step 5: Create the "issued_book" table
+CREATE TABLE issued_book (
+    prn INT,
+    b_id VARCHAR(4),
+    b_name VARCHAR(20),
+    date_of_issue DATE,
+    return_date DATE,
+    FOREIGN KEY (prn) REFERENCES register(prn),
+    FOREIGN KEY (b_id) REFERENCES book_db(id)
+);
+
+-- Step 6: Inserting values into the book_db table
+INSERT INTO book_db (id, b_name, ttl_copies, avl_copies) VALUES
+('AM04', 'Applied Mechanics', 1, 1),
+('BC13', 'Build construction', 2, 2),
+('CA20', 'Circuit Analysis', 2, 2),
+('CC37', 'Clean Code', 4, 4),
+('CF10', 'Cyber forensics', 2, 2),
+('CS27', 'Cybersecurity', 3, 2),
+('CS48', 'Control Systems', 3, 3),
+('CT03', 'Concrete Technology', 2, 2),
+('DM14', 'Designing ML', 3, 2),
+('DS12', 'Data Science', 3, 3),
+('EG10', 'Engineering Geology', 1, 1),
+('FD10', 'Fluid Mechanics', 1, 1),
+('MD09', 'Mechanical Dynamics', 2, 2),
+('ML45', 'Machine Learning', 2, 2),
+('MS40', 'Material Science', 2, 2),
+('PC11', 'Programming with C', 4, 4),
+('PE74', 'Power Electronics', 2, 2),
+('SD23', 'Steel design', 3, 3),
+('SP92', 'Signal Processing', 3, 3),
+('TD88', 'Thermodynamics', 2, 2);
